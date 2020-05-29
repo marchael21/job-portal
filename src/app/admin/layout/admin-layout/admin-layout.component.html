@@ -1,0 +1,35 @@
+<app-admin-header [sideNav]="sideNav"></app-admin-header>
+
+<mat-sidenav-container fxFlexFill>
+	<mat-sidenav #sideNav (click)="sideNav.toggle()" >
+		<mat-nav-list *ngIf="user && user.role == 'Administrator'">
+			<!-- <a (click)="sidenav.toggle()" mat-list-item>Close</a> -->
+			<a mat-list-item>
+				<mat-icon>people</mat-icon>&nbsp;
+				Employers & Admins
+			</a>
+			<mat-divider></mat-divider>
+			<a mat-list-item>
+				<mat-icon>perm_identity</mat-icon>&nbsp;
+				My Profile
+			</a>
+			<a mat-list-item (click)="logout()">
+				<mat-icon>power_settings_new</mat-icon>&nbsp;
+				Logout
+			</a>
+			<mat-divider></mat-divider>
+			<a mat-raised-button routerLink="/" color="primary" class="sidenav-btn">View Job Posting</a>
+		</mat-nav-list>
+		<mat-nav-list *ngIf="!user">
+			<a mat-raised-button routerLink="/" color="primary" class="sidenav-btn">View Job Posting</a>
+			<mat-divider></mat-divider>
+			<a mat-list-item routerLink="/admin/login">Login</a>
+		</mat-nav-list>
+	</mat-sidenav>
+
+	<mat-sidenav-content fxFlexFill>
+		<app-admin-content></app-admin-content>
+	</mat-sidenav-content>
+</mat-sidenav-container>
+
+<app-admin-footer></app-admin-footer>

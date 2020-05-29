@@ -1,0 +1,36 @@
+<mat-toolbar>
+	<span>EMPLOYER - LOGIN</span>
+</mat-toolbar>
+<div class="signin-content">
+	<mat-card>
+		<mat-card-title>
+			Employer Login
+		</mat-card-title>
+		<mat-card-content>
+			<mat-error>
+		      <span>{{error}}</span>
+		    </mat-error>
+			<form id="loginForm" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+				<mat-form-field class="full-width">
+					<mat-label>Email</mat-label>
+					<input  matInput  type="text" placeholder="Email" formControlName="email">
+				    <mat-error *ngIf="submitted && f.email.errors">
+				      <span *ngIf="f.email.errors.required">Email is required</span>
+				      <span *ngIf="f.email.errors.email">Please enter a valid email address</span>
+				    </mat-error>
+				</mat-form-field>
+				<mat-form-field class="full-width">
+					<mat-label>Password</mat-label>
+					<input  matInput  placeholder="Password" formControlName="password">
+					<mat-error *ngIf="submitted && f.password.errors">
+				      <span *ngIf="f.password.errors.required">Passsword is required</span>
+				    </mat-error>
+				</mat-form-field>
+			</form>
+		</mat-card-content>
+		<mat-card-actions>
+			<button mat-raised-button color="primary" form="loginForm">LOGIN</button>
+			<p><a routerLink="/employer/register" color="primary">Don't have an account?</a></p>
+		</mat-card-actions>
+	</mat-card>
+</div>

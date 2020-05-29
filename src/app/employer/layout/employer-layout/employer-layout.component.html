@@ -1,0 +1,45 @@
+
+<app-employer-header [sideNav]="sideNav"></app-employer-header>
+
+<mat-sidenav-container fxFlexFill>
+	<mat-sidenav #sideNav (click)="sideNav.toggle()" >
+		<mat-nav-list *ngIf="user && user.role == 'Employer'">
+			<!-- <a (click)="sidenav.toggle()" mat-list-item>Close</a> -->
+			<a mat-list-item>
+				<mat-icon>work</mat-icon>&nbsp;
+				Job Postings
+			</a>
+			<a mat-list-item>
+				<mat-icon>assignment_ind</mat-icon>&nbsp;
+				Applicants
+			</a>
+			<a mat-list-item>
+				<mat-icon>people</mat-icon>&nbsp;
+				Users
+			</a>
+			<mat-divider></mat-divider>
+			<a mat-list-item>
+				<mat-icon>perm_identity</mat-icon>&nbsp;
+				My Profile
+			</a>
+			<a mat-list-item (click)="logout()">
+				<mat-icon>power_settings_new</mat-icon>&nbsp;
+				Logout
+			</a>
+			<mat-divider></mat-divider>
+			<a mat-raised-button routerLink="/" color="primary" class="sidenav-btn">View Job Posting</a>
+		</mat-nav-list>
+		<mat-nav-list *ngIf="!user">
+			<a mat-raised-button routerLink="/" color="primary" class="sidenav-btn">View Job Posting</a>
+			<mat-divider></mat-divider>
+			<a mat-list-item routerLink="/employer/login">Login</a>
+			<a mat-list-item routerLink="/employer/register">Register</a>
+		</mat-nav-list>
+	</mat-sidenav>
+
+	<mat-sidenav-content fxFlexFill>
+		<app-employer-content></app-employer-content>
+	</mat-sidenav-content>
+</mat-sidenav-container>
+
+<app-employer-footer></app-employer-footer>

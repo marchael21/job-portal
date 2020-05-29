@@ -1,0 +1,13 @@
+<mat-toolbar color="primary">
+   <mat-toolbar-row>
+     <!--  <span>HOME</span> -->
+      <span class="logo"><a href="/">Job Portal</a></span>
+      <span class="menu-spacer"></span>
+      <div class="main-menu" fxShow="true" fxHide.lt-md>
+			<a mat-button routerLink="/jobs"><mat-icon>work</mat-icon>&nbsp;Jobs</a>
+			<a mat-button routerLink="#"><mat-icon>search</mat-icon>&nbsp;Search Jobs</a>	
+		</div>
+      <span class="spacer"></span>
+      <a mat-raised-button routerLink="/employer">Post a job / Employer</a>
+   </mat-toolbar-row>
+</mat-toolbar>

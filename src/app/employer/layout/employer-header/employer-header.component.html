@@ -1,0 +1,47 @@
+<mat-toolbar color="primary">
+	<mat-toolbar-row>
+		<button mat-icon-button (click)="sideNav.toggle()" fxShow="true" fxHide.gt-sm>
+        	<mat-icon>menu</mat-icon>
+     	 </button>
+		<span class="logo"><a routerLink="/employer">Job Portal - Employer</a></span>
+		<span class="menu-spacer"></span>
+		<div class="main-menu" fxShow="true" fxHide.lt-md *ngIf="user && user.role == 'Employer'">
+
+			<a mat-button [matMenuTriggerFor]="jobPostings">
+				<mat-icon>work</mat-icon>
+				Job Postings
+			</a>
+			<mat-menu #jobPostings="matMenu" yPosition="below" xPosition="after">
+				<a mat-menu-item routerLink="/employer/job-posting/list"><mat-icon>list</mat-icon>&nbsp;Job List</a>
+				<a mat-menu-item routerLink="/employer/job-posting/create"><mat-icon>add</mat-icon>&nbsp;Create New Job</a>
+			</mat-menu>
+
+			<a mat-button routerLink="/employer/applicant/list"><mat-icon>assignment_ind</mat-icon>&nbsp;Applicants</a>
+
+			<a mat-button [matMenuTriggerFor]="users">
+				<mat-icon>people</mat-icon>
+				Users
+			</a>
+			<mat-menu #users="matMenu" yPosition="below" xPosition="after">
+				<a mat-menu-item routerLink="/employer/user/list"><mat-icon>list</mat-icon>&nbsp;User List</a>
+				<a mat-menu-item routerLink="/employer/user/create"><mat-icon>add</mat-icon>&nbsp;Create New User</a>
+			</mat-menu>			
+		</div>
+		<span class="spacer"></span>
+		<div class="main-menu" fxShow="true" fxHide.lt-md *ngIf="!user">
+			<a mat-raised-button routerLink="/">View Job Posting</a>
+			<a mat-button routerLink="/employer/login">Login</a>
+			<a mat-button routerLink="/employer/register">Register</a>
+		</div>	
+		<div class="main-menu" fxShow="true" fxHide.lt-md *ngIf="user">
+			<a mat-raised-button routerLink="/">View Job Posting</a>
+			<a mat-button [matMenuTriggerFor]="myAccount">
+				<mat-icon class="mat-icon-lg my-account-icon">account_circle</mat-icon>
+			</a>
+			<mat-menu #myAccount="matMenu" yPosition="below" xPosition="after">
+				<a mat-menu-item routerLink="/employer/profile"><mat-icon>perm_identity</mat-icon>&nbsp;My Profile</a>
+				<a mat-menu-item (click)="logout()"><mat-icon>power_settings_new</mat-icon>&nbsp;Logout</a>
+			</mat-menu>
+		</div>	
+	</mat-toolbar-row>
+</mat-toolbar>
